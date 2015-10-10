@@ -1,0 +1,15 @@
+{
+	"version": "1.0.0-*",
+	"description": "Tests Runner",
+	"authors": [
+		"Roman Klimenko <romaklimenko@gmail.com>"
+	],
+	"dependencies": {
+	},
+	"commands": {
+		"Runner": "Runner"
+	},
+	"frameworks": {
+		"dnx451": {}
+	}
+}
