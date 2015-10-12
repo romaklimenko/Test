@@ -1,0 +1,18 @@
+{
+	"version": "1.0.0-*",
+	"description": "Example classes for Test project",
+	"authors": [
+		"Roman Klimenko <romaklimenko@gmail.com>"
+	],
+	"dependencies": {
+		"Test": ""
+	},
+	"frameworks": {
+		"dnx451": {},
+		"dnxcore50": {
+			"dependencies": {
+				"System.Console": "4.0.0-beta-*"
+			}
+		}
+	}
+}

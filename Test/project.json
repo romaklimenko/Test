@@ -1,13 +1,10 @@
 {
 	"version": "1.0.0-*",
-	"description": "Tests Runner",
+	"description": "Test framework",
 	"authors": [
 		"Roman Klimenko <romaklimenko@gmail.com>"
 	],
 	"dependencies": {
-	},
-	"commands": {
-		"Runner": "Runner"
 	},
 	"frameworks": {
 		"dnx451": {},

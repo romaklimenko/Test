@@ -6,7 +6,7 @@ namespace Test
 	{
 		static void Main(string[] args)
 		{
-			Console.ForegroundColor = ConsoleColor.Red;
+			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("Hello from DNX!");
 		}
 	}
