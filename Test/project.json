@@ -4,6 +4,9 @@
 	"authors": [
 		"Roman Klimenko <romaklimenko@gmail.com>"
 	],
+	"commands": {
+		"test": "run Sample.dll"
+	},
 	"dependencies": {
 	},
 	"frameworks": {
