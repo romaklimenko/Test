@@ -1,0 +1,13 @@
+{
+	"name": "Test",
+	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/romaklimenko/Test.git"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"gulp": "*",
+		"gulp-shell": "*"
+	}
+}

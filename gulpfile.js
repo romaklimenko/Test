@@ -1,5 +1,13 @@
 var gulp = require('gulp');
+var shell = require('gulp-shell');
 
-gulp.task('default', function() {
-	// place code for your default task here
-});
+
+gulp.task('default', ['build', 'run']);
+
+gulp.task('build', shell.task([
+	'dnu build Sample/'
+]));
+
+gulp.task('run', shell.task([
+	'dnx -p Test run "./Sample/bin/Debug/dnx451/Sample.dll"'
+]))

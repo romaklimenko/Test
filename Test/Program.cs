@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace Test
 {
@@ -9,6 +10,9 @@ namespace Test
 			Console.ForegroundColor = ConsoleColor.Blue;
 			foreach (var arg in args)
 			{
+				var path = Path.GetFullPath(arg);
+				Console.WriteLine(path);
+				Console.WriteLine(File.Exists(path));
 				Console.WriteLine(arg);
 			}
 			Console.ForegroundColor = ConsoleColor.Green;
