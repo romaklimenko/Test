@@ -6,5 +6,10 @@ namespace Sample
 		{
 			//
 		}
+		
+		public int GetInteger()
+		{
+			return 314;
+		}
 	}
 }
