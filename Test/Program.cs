@@ -9,31 +9,60 @@ namespace Test
 	{
 		static void Main(string[] args)
 		{
-			Console.ForegroundColor = ConsoleColor.Blue;
 			foreach (var arg in args)
 			{
 				var path = Path.GetFullPath(arg);
-				Console.WriteLine(path);
-				Console.WriteLine(File.Exists(path));
-				Console.WriteLine(arg);
-				var assembly = Assembly.LoadFrom(path);
-				var testClasses = GetTestClasses(assembly);
-				foreach(Type testClass in testClasses)
+				var testAssembly = Assembly.LoadFrom(path);
+				var testTypes = GetTestTypes(testAssembly);
+				foreach(Type testType in testTypes)
 				{
-					Console.WriteLine(testClass.FullName);
-				}
-			}
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("Hello from DNX!");
-		}
-		
-		public static IEnumerable<Type> GetTestClasses(Assembly assembly)
-		{
-				foreach(Type type in assembly.GetTypes()) {
-					if (type.GetCustomAttributes(typeof(TestClassAttribute), true).Length > 0) {
-						yield return type;
+					Console.WriteLine("{0}:", testType.FullName);
+					
+					var testMethodInfos = GetTestMethodInfos(testType);
+					foreach (var testMethodInfo in testMethodInfos)
+					{
+						Console.WriteLine("  {0}:", testMethodInfo.Name);
+						object instance = Activator.CreateInstance(testType, null);
+						try
+						{
+							testMethodInfo.Invoke(instance, null);
+							Console.ForegroundColor = ConsoleColor.Green;
+							Console.WriteLine("    Success.");
+							Console.ResetColor();
+						}
+						catch (TargetInvocationException targetInvocationException)
+						{
+							Console.ForegroundColor = ConsoleColor.Red;
+							Console.WriteLine(
+								"    Failure: {0}", 
+								targetInvocationException.InnerException.Message);
+							Console.ResetColor();
+						}
 					}
 				}
+			}
+		}
+		
+		public static IEnumerable<Type> GetTestTypes(Assembly testAssembly)
+		{
+				foreach(Type testType in testAssembly.GetTypes())
+				{
+					if (testType.GetCustomAttributes(typeof(TestClassAttribute), true).Length > 0)
+					{
+						yield return testType;
+					}
+				}
+		}
+		
+		public static IEnumerable<MethodInfo> GetTestMethodInfos(Type testType)
+		{
+			foreach (var testMethodInfo in testType.GetMethods())
+			{
+				if (testMethodInfo.GetCustomAttributes(typeof(TestAttribute), true).Length > 0)
+				{
+					yield return testMethodInfo;
+				}
+			}
 		}
 	}
 }

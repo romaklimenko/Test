@@ -9,5 +9,8 @@
 	"devDependencies": {
 		"gulp": "*",
 		"gulp-shell": "*"
+	},
+	"scripts": {
+		"test": "dnu build Test Sample; dnx -p Test run \"./Sample/bin/Debug/dnx451/Sample.dll\""
 	}
 }
