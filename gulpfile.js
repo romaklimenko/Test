@@ -1,6 +1,9 @@
 var gulp = require('gulp');
 var shell = require('gulp-shell');
 
+var options = {
+  color: 'false'
+};
 
 gulp.task('default', ['build', 'run']);
 
